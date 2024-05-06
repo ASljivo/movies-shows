@@ -1,20 +1,64 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&family=Lora:wght@400;500&family=Poppins:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --text-clr: #4a5c6c;
+  --text-light: #f2f4fc;
+  --bg-clr: #f2f4fc;
+  --border-clr: rgb(156, 176, 193);
+  --sel-clr: #4386ab;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  font-size: 62.5%;
 }
 
-.App-header {
+body {
   background-color: #282c34;
+}
+
+h2 {
+  font-family: "Lora", serif;
+  color: var(--text-clr);
+  font-size: 2rem;
+  transition: all 0.5s linear;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  min-width: 10rem;
+  max-height: 30rem;
+  margin: 1rem 0;
+  border-radius: 1rem;
+  transition: all 0.3s linear;
+}
+
+/* resuable code  */
+.container {
+  max-width: 140rem;
+  margin: auto;
+  padding: 3rem;
+}
+
+.grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.grid-2-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +68,169 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  width: 50%;
+  max-width: 30rem;
+  min-height: 30rem;
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* search css  */
+.search-section {
+  margin: auto;
+  text-align: center;
+  margin: 4rem 0;
+}
+
+input {
+  width: 30rem;
+  border-radius: 100px;
+  border: none;
+  border: 1px solid var(--border-clr);
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  /* border-color: var(--border-clr); */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  outline: none;
+  margin-top: 2rem;
+}
+
+.card-error p {
+  color: red;
+  margin-top: 1rem;
+  font-size: 1.8rem;
+}
+
+/* Single list css code  */
+
+.list-section {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--text-clr);
+  display: grid;
+  place-items: center;
+}
+
+.loading {
+  font-size: 3.2rem;
+  color: var(--text-clr);
+  text-align: center;
+}
+
+.list-section .loading {
+  font-size: 3.2rem;
+  color: var(--bg-clr);
+  text-align: center;
+}
+
+.list-card {
+  min-width: 30rem;
+  width: 50vw;
+  background-color: var(--bg-clr);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 0.6fr 1fr;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 2rem;
+}
+
+.deatils .title {
+  font-size: 22px;
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.deatils .label {
+  font-size: 18px;
+  color: var(--text-light);
+  font-weight: bold;
+  margin: 16px 0 8px 0;
+}
+
+.deatils .text {
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+a {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 3.2rem 1rem;
+  color: var(--text-clr);
+  border: 0.2rem solid var(--text-clr);
+  font-size: 1.8rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s linear;
+}
+
+a:hover {
+  background-color: var(--sel-clr);
+  color: var(--bg-clr);
+}
+
+a:hover h2 {
+  color: var(--bg-clr);
+  transform: translateY(-1.5rem);
+  display: inline-block;
+}
+
+a:hover img {
+  transform: scale(1.1);
+}
+
+/* responsive code   */
+@media (max-width: 1200px) {
+  .container {
+    margin: auto;
+    max-width: 110rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 998px) {
+  .container {
+    max-width: 90rem;
+    margin: auto;
+  }
+  .grid-2-col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .list-section {
+    height: auto;
+    padding: 4.8rem 0;
+  }
+
+  .list-card {
+    grid-template-columns: 1fr;
+  }
+
+  .card-content {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin: auto;
+  }
+  .grid-2-col {
+    grid-template-columns: 1fr;
   }
 }

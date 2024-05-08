@@ -1,0 +1,18 @@
+.tab-links {
+  margin-bottom: 32px;
+}
+
+.tab-content > section {
+  animation: up 1s;
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}

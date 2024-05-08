@@ -9,7 +9,7 @@ import { MOVIE_INIT } from "utils/constants";
 
 export const MovieDetails: FC = () => {
   const { id } = useParams();
-  const { fetch, isLoading } = useApi(MoviesService.get);
+  const { fetch, isLoading } = useApi(MoviesService.getById);
   const [movie, setMovie] = useState<MovieModel>(MOVIE_INIT);
 
   const getMovie = () => {

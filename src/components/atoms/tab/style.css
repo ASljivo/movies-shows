@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --primary: #03a9f4;
+  --white: #f0f0f9;
+}
+
+*,
+button,
+input {
+  font-family: Roboto, sans-serif;
+}
+
+button {
+  position: relative;
+  padding: 16px;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-size: 18px;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary);
+  transition: 0.4s;
+}
+
+button:hover::after,
+button.active::after {
+  width: 100%;
+}

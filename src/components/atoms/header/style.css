@@ -1,0 +1,6 @@
+header {
+  height: 100px;
+  margin-top: 32px;
+  color: var(--primary);
+  text-align: center;
+}

@@ -1,10 +1,14 @@
+import { GlobalContext, useGlobalContext } from "context/globalContext";
 import "./App.css";
 import AppRoutes from "./routes/Routes";
 
 function App() {
+  const globalContext = useGlobalContext();
   return (
     <div className="container">
-      <AppRoutes />
+      <GlobalContext.Provider value={globalContext}>
+        <AppRoutes />
+      </GlobalContext.Provider>
     </div>
   );
 }

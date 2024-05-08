@@ -1,12 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { MovieModel } from "models/MoviesModel";
 import MoviesService from "services/MoviesService";
 import useApi from "utils/apiClient/useApi";
-import { NavLink } from "react-router-dom";
 import { Loading } from "components/atoms/loading/Loading";
-import { Tabs } from "components/molecules/tabs/Tabs";
-import Search from "components/atoms/search/Search";
-import { useGlobalContext } from "context/globalContext";
+
+import { GlobalContext } from "context/globalContext";
+import { PageContent } from "components/organisms/page-content/PageContent";
 
 export const Movies: FC = () => {
   const { fetch, isLoading } = useApi(MoviesService.getTopRated);
@@ -14,59 +13,55 @@ export const Movies: FC = () => {
     MoviesService.get
   );
   const [movies, setMovies] = useState<MovieModel[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const { moviesQuery, setMoviesQueryValue } = useGlobalContext();
+  const [dataLength, setDataLength] = useState<number>(1);
+  const [hasPaggination, setHasPaggination] = useState<boolean>(false);
+  const { moviesQuery, moviesPage, setMoviesQueryValue, setMoviesPageValue } =
+    useContext(GlobalContext);
 
-  const handleSearch = (value: string) => {
-    if (value) {
-      searchMovie(value, page).then(({ data }) => {
-        setMovies(data.results);
-      });
-    }
-  };
-
-  const getMovies = () => {
+  const getTopRatedMovies = () => {
     fetch().then(({ data }) => {
       setMovies(data.results.slice(0, 10));
+      setHasPaggination(false);
     });
   };
 
   useEffect(() => {
-    getMovies();
-  }, []);
+    const timeoutId = setTimeout(() => {
+      if (moviesQuery.length < 3) {
+        getTopRatedMovies();
+      } else {
+        searchMovies(moviesQuery, moviesPage);
+      }
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line
+  }, [moviesQuery, moviesPage]);
+
+  const searchMovies = (value: string, page: number) => {
+    searchMovie(value, page).then(({ data }) => {
+      setMovies(data.results);
+      setDataLength(data.total_pages);
+      setHasPaggination(data.total_pages > 1);
+    });
+  };
+
+  const handleSearch = () => {
+    setMoviesPageValue(1);
+  };
 
   if (isLoading || isLoadingSearch) {
     return <Loading />;
   }
-  return (
-    <>
-      <Tabs />
-      <Search
-        value={moviesQuery}
-        setValue={setMoviesQueryValue}
-        onSearch={handleSearch}
-      />
-      <section>
-        <div className="grid grid-2-col">
-          {movies.map((currentMovie) => {
-            const { poster_path, id, title } = currentMovie;
+  const props = {
+    query: moviesQuery,
+    setQuery: setMoviesQueryValue,
+    currentPage: moviesPage,
+    setCurrentPage: setMoviesPageValue,
+    data: movies,
+    dataLength,
+    handleSearch,
+    hasPaggination,
+  };
 
-            return (
-              <NavLink to={`/movie/${id}`} key={id}>
-                <div className="card">
-                  <div className="card-info">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                      alt="Poster"
-                    />
-                    <h2>{title}</h2>
-                  </div>
-                </div>
-              </NavLink>
-            );
-          })}
-        </div>
-      </section>
-    </>
-  );
+  return <>{movies.length > 0 && <PageContent {...props} />}</>;
 };

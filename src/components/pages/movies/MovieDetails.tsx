@@ -1,5 +1,5 @@
-import { BackButton } from "components/atoms/back-button/BackButton";
 import { Loading } from "components/atoms/loading/Loading";
+import { PageDetails } from "components/organisms/page-details/PageDeatils";
 import { MovieModel } from "models/MoviesModel";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -19,52 +19,12 @@ export const MovieDetails: FC = () => {
   };
   useEffect(() => {
     getMovie();
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  return (
-    <>
-      {movie && !isLoading && (
-        <section>
-          <BackButton />
-
-          {movie.video ? (
-            <video controls width="100%">
-              <source
-                src={`https://image.tmdb.org/t/p/original/${movie.video}`}
-                type="video/mp4"
-              />
-              Sorry, your browser doesn't support embedded videos.
-            </video>
-          ) : (
-            <img
-              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              alt="Poster"
-            />
-          )}
-
-          <div className="deatils">
-            <p className="title">{movie.title}</p>
-
-            <p className="label">Movie Overview</p>
-            <p className="text">{movie.overview}</p>
-
-            <p className="label">Genres</p>
-            <p className="text">
-              {movie?.genres?.map((item) => item.name + " ")}
-            </p>
-
-            <p className="label">Vote average</p>
-            <p className="text">{movie?.vote_average}</p>
-
-            <p className="label">Vote average</p>
-            <p className="text">{movie?.release_date.replaceAll("-", " ")}</p>
-          </div>
-        </section>
-      )}
-    </>
-  );
+  return <PageDetails {...movie} />;
 };

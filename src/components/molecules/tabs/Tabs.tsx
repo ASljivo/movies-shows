@@ -13,7 +13,7 @@ export const Tabs: FC = () => {
     <div id="tabs">
       <div className="tab-links">
         {tabs.map((item) => (
-          <Tab {...item}></Tab>
+          <Tab {...item} key={item.name} />
         ))}
       </div>
     </div>

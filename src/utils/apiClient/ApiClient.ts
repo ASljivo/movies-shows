@@ -13,17 +13,14 @@ export type ResponseError = AxiosResponse<ServerError>;
 const clientAPI = configureAPI("json");
 
 class ApiClient {
-  get<T = any, U = any>(
-    url: string,
-    params?: any,
-    headers?: any
-  ): Promise<Response<U>> {
+  get<U = any>(url: string, params?: any, headers?: any): Promise<Response<U>> {
     return this.invoke(clientAPI.get, url, { params, headers });
   }
 
-  invoke<T, U>(action: Function, ...args: any): Promise<Response<U>> {
+  invoke<U>(action: Function, ...args: any): Promise<Response<U>> {
     return action(...args);
   }
 }
+const apiClient = new ApiClient();
 
-export default new ApiClient();
+export default apiClient;

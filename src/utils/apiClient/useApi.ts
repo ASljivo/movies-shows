@@ -77,6 +77,7 @@ const useApi = <T extends unknown>(
     if (!skipOnLoad) {
       fetch(params, body);
     }
+    // eslint-disable-next-line
   }, []);
 
   const { response, error, isLoading } = state;

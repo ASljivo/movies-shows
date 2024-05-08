@@ -1,6 +1,44 @@
-header {
+.container {
+  width: auto;
   height: 100px;
-  margin-top: 32px;
-  color: var(--primary);
-  text-align: center;
+  background-image: linear-gradient(to bottom, var(--primary), lightblue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px saddlebrown;
+}
+
+.header {
+  color: black;
+  font-size: 26px;
+  letter-spacing: 8px;
+  font-weight: 900;
+  text-shadow: 0 0 1px black;
+  font-variant: small-caps;
+  animation: move 2s ease-in-out 0s 1;
+}
+
+@keyframes move {
+  from {
+    margin-top: 100px;
+  }
+
+  to {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes fold {
+  from {
+    transform: skew(10deg);
+    color: green;
+    background-color: #000;
+  }
+
+  to {
+    transform: skew(160deg);
+  }
 }

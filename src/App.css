@@ -28,9 +28,9 @@ body {
 h2 {
   font-family: "Lora", serif;
   color: var(--text-clr);
-  font-size: 32px;
+  font-size: 22px;
   transition: all 0.5s linear;
-  min-width: 150px;
+  min-width: 180px;
 }
 
 a {

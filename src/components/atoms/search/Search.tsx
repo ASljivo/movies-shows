@@ -9,19 +9,17 @@ const Search: FC<SearchTerms> = ({ value, setValue, onSearch }) => {
   };
 
   return (
-    <>
-      <section className="search-section">
-        <div>
-          <input
-            autoFocus
-            type="text"
-            placeholder="Search"
-            value={value}
-            onChange={(e) => handleChange(e.target.value)}
-          />
-        </div>
-      </section>
-    </>
+    <section className="search-section">
+      <div>
+        <input
+          autoFocus
+          type="text"
+          placeholder="Search"
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+        />
+      </div>
+    </section>
   );
 };
 

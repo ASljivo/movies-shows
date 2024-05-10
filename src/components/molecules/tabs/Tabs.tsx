@@ -10,12 +10,10 @@ export const Tabs: FC = () => {
   ];
 
   return (
-    <div id="tabs">
-      <div className="tab-links">
-        {tabs.map((item) => (
-          <Tab {...item} key={item.name} />
-        ))}
-      </div>
+    <div className="tab-links">
+      {tabs.map((item) => (
+        <Tab {...item} key={item.name} />
+      ))}
     </div>
   );
 };

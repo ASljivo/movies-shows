@@ -1,18 +1,21 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { MovieModel } from "models/MoviesModel";
-import MoviesService from "services/MoviesService";
+import { MediaModel } from "models/MediaResponse";
+import HttpService from "services/HttpService";
 import useApi from "utils/apiClient/useApi";
 import { Loading } from "components/atoms/loading/Loading";
 
 import { GlobalContext } from "context/globalContext";
 import { PageContent } from "components/organisms/page-content/PageContent";
 
+import { getTopTenData } from "helpers/helpers";
+
 export const Movies: FC = () => {
-  const { fetch, isLoading } = useApi(MoviesService.getTopRated);
+  HttpService.category = "movie";
+  const { fetch, isLoading } = useApi(HttpService.getTopRated);
   const { fetch: searchMovie, isLoading: isLoadingSearch } = useApi(
-    MoviesService.get
+    HttpService.get
   );
-  const [movies, setMovies] = useState<MovieModel[]>([]);
+  const [movies, setMovies] = useState<MediaModel[]>([]);
   const [dataLength, setDataLength] = useState<number>(1);
   const [hasPaggination, setHasPaggination] = useState<boolean>(false);
   const { moviesQuery, moviesPage, setMoviesQueryValue, setMoviesPageValue } =
@@ -20,7 +23,7 @@ export const Movies: FC = () => {
 
   const getTopRatedMovies = () => {
     fetch().then(({ data }) => {
-      setMovies(data.results.slice(0, 10));
+      setMovies(getTopTenData(data.results));
       setHasPaggination(false);
     });
   };
@@ -61,7 +64,8 @@ export const Movies: FC = () => {
     dataLength,
     handleSearch,
     hasPaggination,
+    deatilsPage: "movie",
   };
 
-  return <>{movies.length > 0 && <PageContent {...props} />}</>;
+  return <PageContent {...props} />;
 };

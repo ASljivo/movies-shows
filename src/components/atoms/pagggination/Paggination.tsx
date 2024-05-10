@@ -24,6 +24,7 @@ const Pagination: FC<Pagginator> = ({
       <div className="pagination">
         <p
           key="prev"
+          data-testid="prev"
           onClick={goToPrevPage}
           style={{
             cursor: currentPage !== 1 ? "pointer" : "",
@@ -37,6 +38,7 @@ const Pagination: FC<Pagginator> = ({
 
         <p
           key="next"
+          data-testid="next"
           onClick={goToNextPage}
           style={{
             cursor: currentPage !== nPages ? "pointer" : "",

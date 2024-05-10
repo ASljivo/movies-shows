@@ -1,3 +1,4 @@
 export const MOVIES = "/movies";
 export const SHOWS = "/shows";
-export const MOVIES_DETAILS = "/movie/:id";
+export const MOVIE_DETAILS = "/movie/:id";
+export const SHOW_DETAILS = "/show/:id";

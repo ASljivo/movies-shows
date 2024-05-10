@@ -37,19 +37,20 @@ interface Videos {
   results: Video[];
 }
 
-export interface MovieModel {
+export interface MediaModel {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[];
+  genre_ids?: number[];
   id: number;
   original_language: string;
-  original_title: string;
+  original_title?: string;
+  original_name?: string;
   overview: string;
   popularity: number;
   poster_path: string;
   release_date: string;
-  title: string;
-  video: boolean;
+  title?: string;
+  video?: boolean;
   vote_average: number;
   vote_count: number;
   belongs_to_collection?: string;
@@ -66,11 +67,23 @@ export interface MovieModel {
   status?: string;
   tagline?: string;
   videos?: Videos;
+  episode_run_time?: number[];
+  number_of_episodes?: number;
+  number_of_seasons?: number;
+  first_air_date?: string;
+  name?: string;
+  in_production?: string;
+  languages?: string;
+  last_air_date?: string;
+  last_episode_to_air?: string;
+  networks?: string;
+  seasons?: string;
+  type?: string;
 }
 
-export interface MoviesModel {
+export interface MediaResponse {
   page: number;
-  results: MovieModel[];
+  results: MediaModel[];
   total_pages: number;
   total_results: number;
 }

@@ -9,6 +9,7 @@ export const VideoPlayer: FC<Props> = ({ videoKey }) => {
   return (
     <iframe
       className="video"
+      data-testid="iframe"
       width="100%"
       height="300px"
       title="Youtube player"

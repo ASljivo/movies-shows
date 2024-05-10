@@ -8,6 +8,7 @@ export const BackButton: FC = () => {
   return (
     <div className="content">
       <div
+        data-testid="back-button"
         className="back-button"
         onClick={(e) => {
           e.preventDefault();

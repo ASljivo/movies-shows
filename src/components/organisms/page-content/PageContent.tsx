@@ -14,22 +14,21 @@ export const PageContent: FC<Props> = ({
   dataLength,
   handleSearch,
   hasPaggination,
+  deatilsPage,
 }) => {
   return (
     <>
       <Tabs />
       <Search value={query} setValue={setQuery} onSearch={handleSearch} />
-      <section>
-        <CardList data={data} />
+      <CardList data={data} deatilsPage={deatilsPage} />
 
-        {hasPaggination && (
-          <Pagination
-            nPages={dataLength}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        )}
-      </section>
+      {hasPaggination && (
+        <Pagination
+          nPages={dataLength}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </>
   );
 };

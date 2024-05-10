@@ -14,7 +14,6 @@ type ReturnType<T, Params = null, Body = null> = {
   error?: string;
   isLoading: boolean;
   fetch: ApiCallType<T, Params, Body>;
-  setData: (data: T) => void;
   setLoading: (isLoading: boolean) => void;
 };
 
@@ -67,12 +66,6 @@ const useApi = <T extends unknown>(
   const setLoading = (isLoading: boolean): void =>
     setState((prevState) => ({ ...prevState, isLoading }));
 
-  const setData = (data: T): void =>
-    setState((prevState) => ({
-      ...prevState,
-      response: { ...prevState.response, data } as Response<T>,
-    }));
-
   useEffect(() => {
     if (!skipOnLoad) {
       fetch(params, body);
@@ -88,7 +81,6 @@ const useApi = <T extends unknown>(
     isLoading,
     fetch,
     setLoading,
-    setData,
   };
 };
 

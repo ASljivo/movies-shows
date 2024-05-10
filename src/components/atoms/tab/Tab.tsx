@@ -10,6 +10,7 @@ export const Tab: FC<TabModel> = ({ name, path }) => {
   return (
     <button
       key={path}
+      data-testid="tab"
       onClick={() => navigate(path)}
       className={path === pathname ? "active" : ""}
     >

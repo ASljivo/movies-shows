@@ -7,8 +7,8 @@ import HttpService from "services/HttpService";
 import useApi from "utils/apiClient/useApi";
 import { MEDIA_INIT } from "utils/constants";
 
-export const MovieDetails: FC = () => {
-  HttpService.category = "movie";
+export const ShowDetails: FC = () => {
+  HttpService.category = "tv";
   const { id } = useParams();
   const { fetch, isLoading } = useApi(HttpService.getById);
   const [movie, setMovie] = useState<MediaModel>(MEDIA_INIT);

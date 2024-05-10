@@ -7,7 +7,7 @@ import HttpService from "services/HttpService";
 import useApi from "utils/apiClient/useApi";
 import { MEDIA_INIT } from "utils/constants";
 
-export const ShowDetails: FC = () => {
+export const TVShowsDetails: FC = () => {
   HttpService.category = "tv";
   const { id } = useParams();
   const { fetch, isLoading } = useApi(HttpService.getById);

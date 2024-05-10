@@ -3,8 +3,8 @@ import "@testing-library/jest-dom/extend-expect";
 
 import { MemoryRouter } from "react-router-dom";
 import { MovieDetails } from "components/pages/movies/MovieDetails";
-import { ShowDetails } from "components/pages/shows/ShowDetails";
-import { Shows } from "components/pages/shows/Shows";
+import { TVShowsDetails } from "components/pages/tv-shows/TVShowsDetails";
+import { TVShows } from "components/pages/tv-shows/TVShows";
 
 describe("Routes", () => {
   test("rendering a component Movies", () => {
@@ -35,7 +35,7 @@ describe("Routes", () => {
 
     render(
       <MemoryRouter initialEntries={[route]}>
-        <Shows />
+        <TVShows />
       </MemoryRouter>
     );
     expect(screen.getByText("TV Shows")).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("Routes", () => {
 
     render(
       <MemoryRouter initialEntries={[route]}>
-        <ShowDetails />
+        <TVShowsDetails />
       </MemoryRouter>
     );
 

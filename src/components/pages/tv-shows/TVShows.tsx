@@ -9,7 +9,7 @@ import { PageContent } from "components/organisms/page-content/PageContent";
 
 import { getTopTenData } from "helpers/helpers";
 
-export const Shows: FC = () => {
+export const TVShows: FC = () => {
   HttpService.category = "tv";
   const { fetch, isLoading } = useApi(HttpService.getTopRated);
   const { fetch: searchMovie, isLoading: isLoadingSearch } = useApi(
